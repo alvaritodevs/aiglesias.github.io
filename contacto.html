@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto — Álvaro Iglesias | Desarrollador de Agentes de IA</title>
+    <meta name="description"
+        content="Contacta con Álvaro Iglesias para proyectos de agentes de IA, automatización inteligente y consultoría en inteligencia artificial.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="nav-logo">alvaro<span>.ai</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="proyectos.html">Proyectos</a></li>
+                <li><a href="sobre-mi.html">Sobre Mí</a></li>
+                <li><a href="formaciones.html">Formaciones</a></li>
+                <li><a href="contacto.html" class="active">Contacto</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Menú"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <span class="section-tag">Hablemos</span>
+            <h1>Contacto</h1>
+            <p>¿Tienes un proyecto de IA en mente? Me encantaría conocer los detalles.</p>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top: 40px;">
+        <div class="container">
+            <div class="contact-layout fade-in">
+                <div class="contact-info">
+                    <h2>Trabajemos juntos</h2>
+                    <p>Estoy disponible para proyectos freelance, consultoría en IA y colaboraciones técnicas. Cuéntame
+                        tu idea y encontremos la mejor solución con agentes inteligentes.</p>
+                    <div class="contact-links">
+                        <a href="mailto:alvaro@ejemplo.com" class="contact-link-item">
+                            <span class="icon">✉️</span>
+                            <span>alvaro@ejemplo.com</span>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="contact-link-item">
+                            <span class="icon">💼</span>
+                            <span>LinkedIn — /in/alvaro-iglesias</span>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="contact-link-item">
+                            <span class="icon">🐙</span>
+                            <span>GitHub — @alvaro-iglesias</span>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="contact-link-item">
+                            <span class="icon">🐦</span>
+                            <span>Twitter — @alvaro_ai</span>
+                        </a>
+                        <div class="contact-link-item">
+                            <span class="icon">📍</span>
+                            <span>Madrid, España (remoto disponible)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Nombre</label>
+                        <input type="text" id="name" name="name" placeholder="Tu nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Asunto</label>
+                        <input type="text" id="subject" name="subject" placeholder="¿En qué puedo ayudarte?">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" name="message" placeholder="Cuéntame sobre tu proyecto..."
+                            required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">Enviar
+                        mensaje →</button>
+                    <p id="formStatus"
+                        style="text-align:center; margin-top: 16px; font-size: 0.9rem; color: var(--accent-light); display: none;">
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+            </div>
+            <p>© 2026 Álvaro Iglesias. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('navToggle').addEventListener('click', () => { document.getElementById('navLinks').classList.toggle('open'); });
+        window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); });
+        const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const status = document.getElementById('formStatus');
+            status.textContent = '✅ ¡Mensaje enviado con éxito! Te responderé pronto.';
+            status.style.display = 'block';
+            e.target.reset();
+            setTimeout(() => { status.style.display = 'none'; }, 5000);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álvaro Iglesias — Desarrollador de Agentes de IA</title>
+    <meta name="description"
+        content="Portfolio de Álvaro Iglesias, desarrollador especializado en agentes de inteligencia artificial, automatización inteligente y soluciones con LLMs.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="nav-logo">alvaro<span>.ai</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html" class="active">Inicio</a></li>
+                <li><a href="proyectos.html">Proyectos</a></li>
+                <li><a href="sobre-mi.html">Sobre Mí</a></li>
+                <li><a href="formaciones.html">Formaciones</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">Disponible para proyectos</div>
+                <h1>Construyo <span class="highlight">agentes de IA</span> que transforman negocios</h1>
+                <p class="hero-description">
+                    Desarrollo soluciones inteligentes con agentes autónomos, sistemas RAG y automatización avanzada.
+                    Especializado en LangChain, OpenAI API y arquitecturas multi-agente que resuelven problemas reales.
+                </p>
+                <div class="hero-cta">
+                    <a href="proyectos.html" class="btn btn-primary">Ver proyectos →</a>
+                    <a href="contacto.html" class="btn btn-outline">Hablemos</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="orb"></div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="section">
+        <div class="container">
+            <div class="stats-row fade-in">
+                <div class="stat-item">
+                    <span class="stat-number">+30</span>
+                    <span class="stat-label">Agentes de IA desplegados</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">+5</span>
+                    <span class="stat-label">Años de experiencia</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">+15</span>
+                    <span class="stat-label">Clientes satisfechos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Tasa de satisfacción</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects Preview -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <span class="section-tag">Proyectos Destacados</span>
+                <h2 class="section-title">Soluciones de IA en acción</h2>
+                <p class="section-subtitle">Cada proyecto resuelve un problema real con agentes inteligentes, RAG y
+                    automatización.</p>
+            </div>
+            <div class="projects-grid">
+                <div class="card project-card fade-in">
+                    <div class="project-image">🤖</div>
+                    <h3>Asistente Legal Inteligente</h3>
+                    <p>Agente RAG que analiza documentos legales y proporciona respuestas contextualizadas, reduciendo
+                        un 70% el tiempo de consulta.</p>
+                    <div class="project-tags">
+                        <span class="tag">LangChain</span>
+                        <span class="tag">OpenAI</span>
+                        <span class="tag">Pinecone</span>
+                    </div>
+                    <a href="proyectos.html" class="project-link">Ver detalles →</a>
+                </div>
+                <div class="card project-card fade-in">
+                    <div class="project-image">⚡</div>
+                    <h3>Automatización de Soporte</h3>
+                    <p>Sistema multi-agente que gestiona tickets de soporte, clasifica prioridades y genera respuestas
+                        automáticas.</p>
+                    <div class="project-tags">
+                        <span class="tag">CrewAI</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">PostgreSQL</span>
+                    </div>
+                    <a href="proyectos.html" class="project-link">Ver detalles →</a>
+                </div>
+                <div class="card project-card fade-in">
+                    <div class="project-image">📊</div>
+                    <h3>Pipeline de Análisis de Datos</h3>
+                    <p>Agente autónomo que extrae, transforma y analiza datos empresariales generando informes
+                        ejecutivos automáticos.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">LangGraph</span>
+                        <span class="tag">Pandas</span>
+                    </div>
+                    <a href="proyectos.html" class="project-link">Ver detalles →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com" target="_blank">GitHub</a>
+                <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+                <a href="https://twitter.com" target="_blank">Twitter</a>
+            </div>
+            <p>© 2026 Álvaro Iglesias. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile nav toggle
+        document.getElementById('navToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+
+</html>
