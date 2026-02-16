@@ -8,6 +8,8 @@
     <meta name="description"
         content="Desarrollador especializado en agentes de inteligencia artificial, automatización inteligente y soluciones con LLMs.">
     <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');</script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 </head>
 
@@ -23,32 +25,30 @@
                 <li><a href="formaciones.html">Formaciones</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                <span class="theme-icon sun">☀️</span>
+                <span class="theme-icon moon">🌙</span>
+            </button>
             <button class="nav-toggle" id="navToggle" aria-label="Menú"><span></span><span></span><span></span></button>
         </div>
     </nav>
 
     <!-- Hero -->
     <section class="hero">
+        <canvas id="heroCanvas" class="hero-canvas"></canvas>
         <div class="container">
-            <div class="hero-layout">
-                <div class="hero-content">
-                    <span class="hero-tag">Desarrollo de Agentes Autónomos</span>
-                    <h1>Te ahorro <span class="glitch-word" id="glitchWord1">tiempo</span>,<span class="line-break dim">
-                            desarrollando <span class="glitch-word" id="glitchWord2">agentes</span> que <span
-                                class="glitch-word" id="glitchWord3">trabajarán</span> para ti.</span></h1>
-                    <p class="hero-description">
-                        Arquitecto de soluciones con agentes de IA, sistemas RAG y automatización avanzada.
-                        Diseño infraestructura inteligente para empresas que necesitan precisión y escala.
-                    </p>
-                    <div class="hero-cta">
-                        <a href="proyectos.html" class="btn btn-primary">Ver Proyectos</a>
-                        <a href="contacto.html" class="btn btn-ghost">Contactar →</a>
-                    </div>
-                </div>
-                <div class="hero-visual">
-                    <img src="" alt="AI Agent Animation" id="heroGif"
-                        style="width:100%;height:100%;object-fit:cover;border-radius:16px;display:none;">
-                    <div class="hero-visual-placeholder">GIF</div>
+            <div class="hero-content">
+                <span class="hero-tag">Desarrollo de Agentes Autónomos</span>
+                <h1>Te ahorro <span class="glitch-word" id="glitchWord1">tiempo</span>,<span class="line-break dim">
+                        desarrollando <span class="glitch-word" id="glitchWord2">agentes</span> que <span
+                            class="glitch-word" id="glitchWord3">trabajarán</span> para ti.</span></h1>
+                <p class="hero-description">
+                    Arquitecto de soluciones con agentes de IA, sistemas RAG y automatización avanzada.
+                    Diseño infraestructura inteligente para empresas que necesitan precisión y escala.
+                </p>
+                <div class="hero-cta">
+                    <a href="proyectos.html" class="btn btn-primary">Ver Proyectos</a>
+                    <a href="contacto.html" class="btn btn-ghost">Contactar →</a>
                 </div>
             </div>
         </div>
@@ -56,45 +56,84 @@
 
     <!-- Services Carousel -->
     <section class="services-carousel" id="servicesCarousel">
-        <div class="carousel-slides">
-            <div class="carousel-slide active" data-index="0">
-                <div class="slide-bg"></div>
-                <div class="slide-content">
-                    <span class="slide-number">01</span>
-                    <span class="slide-icon">🎙️</span>
-                    <h2>Agentes de Voz</h2>
-                    <p>Asistentes conversacionales con IA que atienden llamadas, cualifican leads y gestionan reservas
-                        las 24 horas, los 7 días de la semana.</p>
+        <div class="services-bg"></div>
+        <div class="container">
+            <div class="services-layout">
+                <!-- Left: Text content -->
+                <div class="services-text">
+                    <div class="services-slides">
+                        <div class="service-slide active" data-index="0">
+                            <span class="service-number">01</span>
+                            <span class="service-icon">🎙️</span>
+                            <h2 class="service-title">Agentes de Voz</h2>
+                            <p class="service-desc">Asistentes conversacionales con IA que atienden llamadas, cualifican
+                                leads y gestionan reservas las 24 horas, los 7 días de la semana.</p>
+                            <div class="service-tags">
+                                <span class="service-tag">ElevenLabs</span>
+                                <span class="service-tag">Twilio</span>
+                                <span class="service-tag">GPT-4</span>
+                            </div>
+                        </div>
+                        <div class="service-slide" data-index="1">
+                            <span class="service-number">02</span>
+                            <span class="service-icon">💬</span>
+                            <h2 class="service-title">Chatbots</h2>
+                            <p class="service-desc">Chatbots inteligentes integrados en WhatsApp, Telegram y web que
+                                resuelven dudas, cualifican clientes y cierran ventas por ti.</p>
+                            <div class="service-tags">
+                                <span class="service-tag">WhatsApp API</span>
+                                <span class="service-tag">LangChain</span>
+                                <span class="service-tag">RAG</span>
+                            </div>
+                        </div>
+                        <div class="service-slide" data-index="2">
+                            <span class="service-number">03</span>
+                            <span class="service-icon">⚡</span>
+                            <h2 class="service-title">Sistemas Inteligentes</h2>
+                            <p class="service-desc">Automatizaciones con RAG, APIs y flujos de trabajo que eliminan
+                                tareas repetitivas y escalan tu negocio sin intervención humana.</p>
+                            <div class="service-tags">
+                                <span class="service-tag">CrewAI</span>
+                                <span class="service-tag">LangGraph</span>
+                                <span class="service-tag">FastAPI</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="services-controls">
+                        <div class="services-dots">
+                            <button class="service-dot active" data-slide="0"><span></span></button>
+                            <button class="service-dot" data-slide="1"><span></span></button>
+                            <button class="service-dot" data-slide="2"><span></span></button>
+                        </div>
+                        <div class="services-progress">
+                            <div class="services-progress-bar" id="servicesProgress"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right: GIF Visual -->
+                <div class="services-visual">
+                    <div class="services-visual-inner">
+                        <div class="service-gif active" data-index="0">
+                            <div class="gif-placeholder">
+                                <span class="gif-placeholder-icon">🎙️</span>
+                                <span class="gif-placeholder-text">Agentes de Voz</span>
+                            </div>
+                        </div>
+                        <div class="service-gif" data-index="1">
+                            <div class="gif-placeholder">
+                                <span class="gif-placeholder-icon">💬</span>
+                                <span class="gif-placeholder-text">Chatbots</span>
+                            </div>
+                        </div>
+                        <div class="service-gif" data-index="2">
+                            <div class="gif-placeholder">
+                                <span class="gif-placeholder-icon">⚡</span>
+                                <span class="gif-placeholder-text">Sistemas Inteligentes</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="carousel-slide" data-index="1">
-                <div class="slide-bg"></div>
-                <div class="slide-content">
-                    <span class="slide-number">02</span>
-                    <span class="slide-icon">💬</span>
-                    <h2>Chatbots</h2>
-                    <p>Chatbots inteligentes integrados en WhatsApp, Telegram y web que resuelven dudas, cualifican
-                        clientes y cierran ventas por ti.</p>
-                </div>
-            </div>
-            <div class="carousel-slide" data-index="2">
-                <div class="slide-bg"></div>
-                <div class="slide-content">
-                    <span class="slide-number">03</span>
-                    <span class="slide-icon">⚡</span>
-                    <h2>Sistemas Inteligentes</h2>
-                    <p>Automatizaciones con RAG, APIs y flujos de trabajo que eliminan tareas repetitivas y escalan tu
-                        negocio sin intervención humana.</p>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-nav">
-            <button class="carousel-dot active" data-slide="0"></button>
-            <button class="carousel-dot" data-slide="1"></button>
-            <button class="carousel-dot" data-slide="2"></button>
-        </div>
-        <div class="carousel-progress">
-            <div class="carousel-progress-bar" id="carouselProgress"></div>
         </div>
     </section>
 
@@ -215,6 +254,40 @@
         </div>
     </footer>
 
+    <!-- Floating CTA Button -->
+    <button class="floating-cta" id="floatingCta"
+        onclick="document.getElementById('contactModal').classList.add('open')">
+        <span class="cta-pulse"></span> Llámame
+    </button>
+
+    <!-- Contact Modal -->
+    <div class="contact-modal-overlay" id="contactModal" onclick="if(event.target===this)this.classList.remove('open')">
+        <div class="contact-modal">
+            <button class="contact-modal-close"
+                onclick="document.getElementById('contactModal').classList.remove('open')">✕</button>
+            <h3>Te llamamos</h3>
+            <p class="modal-subtitle">Déjanos tus datos y nuestro agente de IA te llamará al instante.</p>
+            <form id="callForm">
+                <div class="form-group">
+                    <label for="modal-name">Nombre</label>
+                    <input type="text" id="modal-name" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-email">Email</label>
+                    <input type="email" id="modal-email" placeholder="tu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="modal-phone">Teléfono</label>
+                    <input type="tel" id="modal-phone" placeholder="+34 612 345 678" required>
+                </div>
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAACdzIyoSlxr08Dfa" data-theme="auto"></div>
+                <button type="submit" class="btn btn-primary" id="callBtn">📞 Llámame</button>
+                <p id="callStatus" style="text-align:center;margin-top:12px;font-size:0.85rem;display:none;"></p>
+            </form>
+        </div>
+    </div>
+
+
     <style>
         .glitch-word {
             display: inline-block;
@@ -250,10 +323,110 @@
     </style>
 
     <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or default to 'light'
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const theme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        });
+
         document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
         window.addEventListener('scroll', () => document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50));
         const obs = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }), { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+        // ── Hero Canvas Animation ──
+        (function () {
+            const canvas = document.getElementById('heroCanvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            let w, h, nodes = [];
+            const NODE_COUNT = 60;
+            const MAX_DIST = 160;
+
+            function resize() {
+                const dpr = window.devicePixelRatio || 1;
+                const rect = canvas.parentElement.getBoundingClientRect();
+                w = rect.width;
+                h = rect.height;
+                canvas.width = w * dpr;
+                canvas.height = h * dpr;
+                canvas.style.width = w + 'px';
+                canvas.style.height = h + 'px';
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            }
+
+            function createNodes() {
+                nodes = [];
+                for (let i = 0; i < NODE_COUNT; i++) {
+                    nodes.push({
+                        x: Math.random() * w,
+                        y: Math.random() * h,
+                        vx: (Math.random() - 0.5) * 0.4,
+                        vy: (Math.random() - 0.5) * 0.4,
+                        r: Math.random() * 2 + 1
+                    });
+                }
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, w, h);
+                const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+
+                // Move nodes
+                for (const n of nodes) {
+                    n.x += n.vx;
+                    n.y += n.vy;
+                    if (n.x < 0 || n.x > w) n.vx *= -1;
+                    if (n.y < 0 || n.y > h) n.vy *= -1;
+                }
+
+                // Draw connecting lines
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < MAX_DIST) {
+                            const alpha = (1 - dist / MAX_DIST) * (isDark ? 0.25 : 0.12);
+                            ctx.strokeStyle = isDark
+                                ? `rgba(79, 143, 247, ${alpha})`
+                                : `rgba(37, 99, 235, ${alpha})`;
+                            ctx.lineWidth = 0.8;
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                // Draw nodes
+                for (const n of nodes) {
+                    const alpha = isDark ? 0.5 : 0.25;
+                    ctx.fillStyle = isDark
+                        ? `rgba(79, 143, 247, ${alpha})`
+                        : `rgba(37, 99, 235, ${alpha})`;
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                requestAnimationFrame(draw);
+            }
+
+            resize();
+            createNodes();
+            draw();
+            window.addEventListener('resize', () => { resize(); createNodes(); });
+        })();
 
         // Shared glitch scramble function
         const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!?<>{}[]';
@@ -300,36 +473,59 @@
 
         // GSAP Services Carousel
         (function () {
-            const slides = document.querySelectorAll('#servicesCarousel .carousel-slide');
-            const dots = document.querySelectorAll('#servicesCarousel .carousel-dot');
-            const progressBar = document.getElementById('carouselProgress');
+            const section = document.getElementById('servicesCarousel');
+            const slides = section.querySelectorAll('.service-slide');
+            const gifs = section.querySelectorAll('.service-gif');
+            const dots = section.querySelectorAll('.service-dot');
+            const progressBar = document.getElementById('servicesProgress');
             let current = 0;
             const total = slides.length;
-            const duration = 5; // seconds per slide
+            const duration = 6;
+
+            function getSlideElements(slide) {
+                return slide.querySelectorAll('.service-number, .service-icon, .service-title, .service-desc, .service-tags');
+            }
 
             function goToSlide(next) {
                 if (next === current) return;
                 const outSlide = slides[current];
                 const inSlide = slides[next];
-                const outContent = outSlide.querySelector('.slide-content');
-                const inContent = inSlide.querySelector('.slide-content');
+                const outGif = gifs[current];
+                const inGif = gifs[next];
 
                 const tl = gsap.timeline();
 
-                // Animate out
-                tl.to(outContent.children, {
-                    y: -40, opacity: 0, stagger: 0.05, duration: 0.4, ease: 'power3.in'
+                // Animate out text
+                tl.to(getSlideElements(outSlide), {
+                    y: -30, opacity: 0, stagger: 0.04, duration: 0.35, ease: 'power2.in'
                 });
-                tl.set(outSlide, { className: 'carousel-slide' });
 
-                // Prep in
-                tl.set(inSlide, { className: 'carousel-slide active' });
-                tl.set(inContent.children, { y: 60, opacity: 0 });
+                // Animate out GIF
+                tl.to(outGif, {
+                    opacity: 0, scale: 0.92, duration: 0.4, ease: 'power2.in'
+                }, '<0.1');
 
-                // Animate in
-                tl.to(inContent.children, {
-                    y: 0, opacity: 1, stagger: 0.08, duration: 0.6, ease: 'power3.out'
+                // Swap active classes
+                tl.call(() => {
+                    outSlide.classList.remove('active');
+                    inSlide.classList.add('active');
+                    outGif.classList.remove('active');
+                    inGif.classList.add('active');
                 });
+
+                // Prep incoming elements
+                tl.set(getSlideElements(inSlide), { y: 50, opacity: 0 });
+                tl.set(inGif, { opacity: 0, scale: 1.06 });
+
+                // Animate in GIF
+                tl.to(inGif, {
+                    opacity: 1, scale: 1, duration: 0.6, ease: 'power3.out'
+                });
+
+                // Animate in text
+                tl.to(getSlideElements(inSlide), {
+                    y: 0, opacity: 1, stagger: 0.07, duration: 0.55, ease: 'power3.out'
+                }, '<0.1');
 
                 // Update dots
                 dots.forEach(d => d.classList.remove('active'));
@@ -347,7 +543,6 @@
                 });
             }
 
-            // Dot clicks
             dots.forEach(dot => {
                 dot.addEventListener('click', () => {
                     const idx = parseInt(dot.dataset.slide);
@@ -356,9 +551,68 @@
             });
 
             // Init first slide
-            gsap.set(slides[0].querySelector('.slide-content').children, { y: 0, opacity: 1 });
+            gsap.set(getSlideElements(slides[0]), { y: 0, opacity: 1 });
+            gsap.set(gifs[0], { opacity: 1, scale: 1 });
             resetProgress();
         })();
+
+        // ElevenLabs Outbound Call handler
+        document.getElementById('callForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('callBtn');
+            const status = document.getElementById('callStatus');
+            const phone = document.getElementById('modal-phone').value.trim();
+
+            // Turnstile validation
+            const turnstileResponse = e.target.querySelector('[name="cf-turnstile-response"]');
+            if (!turnstileResponse || !turnstileResponse.value) {
+                status.textContent = '⚠️ Por favor, completa la verificación de seguridad.';
+                status.style.color = '#f59e0b';
+                status.style.display = 'block';
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = '⏳ Llamando...';
+            status.style.display = 'none';
+
+            try {
+                const res = await fetch('https://api.elevenlabs.io/v1/convai/twilio/outbound-call', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'xi-api-key': 'sk_eead976fdcdd54d9899d5285e0e41b44357793f3ef845608'
+                    },
+                    body: JSON.stringify({
+                        agent_id: 'agent_9101kh71cejee92sarad32rsv2sk',
+                        agent_phone_number_id: 'phnum_0701kdj9ffkgegq9pbk7d2br1fd6',
+                        to_number: phone
+                    })
+                });
+
+                if (res.ok) {
+                    status.textContent = '✅ ¡Llamada iniciada! Recibirás la llamada en segundos.';
+                    status.style.color = '#4ade80';
+                    status.style.display = 'block';
+                    btn.textContent = '✅ Llamada enviada';
+                    setTimeout(() => {
+                        document.getElementById('contactModal').classList.remove('open');
+                        e.target.reset();
+                        btn.disabled = false;
+                        btn.textContent = '📞 Llámame';
+                        status.style.display = 'none';
+                    }, 3000);
+                } else {
+                    throw new Error('Error ' + res.status);
+                }
+            } catch (err) {
+                status.textContent = '❌ Error al iniciar la llamada. Inténtalo de nuevo.';
+                status.style.color = '#f87171';
+                status.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = '📞 Llámame';
+            }
+        });
     </script>
 </body>
 

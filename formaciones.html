@@ -8,6 +8,8 @@
     <meta name="description"
         content="Formación académica, certificaciones en IA/ML y cursos especializados de Álvaro Iglesias.">
     <link rel="stylesheet" href="styles.css">
+    <script>document.documentElement.setAttribute('data-theme', localStorage.getItem('theme') || 'light');</script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 
 <body>
@@ -21,6 +23,10 @@
                 <li><a href="formaciones.html" class="active">Formaciones</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" aria-label="Cambiar tema">
+                <span class="theme-icon sun">☀️</span>
+                <span class="theme-icon moon">🌙</span>
+            </button>
             <button class="nav-toggle" id="navToggle" aria-label="Menú"><span></span><span></span><span></span></button>
         </div>
     </nav>
@@ -182,11 +188,69 @@
         </div>
     </footer>
 
+    <button class="floating-cta" onclick="document.getElementById('contactModal').classList.add('open')">
+        <span class="cta-pulse"></span> Llámame
+    </button>
+    <div class="contact-modal-overlay" id="contactModal" onclick="if(event.target===this)this.classList.remove('open')">
+        <div class="contact-modal">
+            <button class="contact-modal-close"
+                onclick="document.getElementById('contactModal').classList.remove('open')">✕</button>
+            <h3>Te llamamos</h3>
+            <p class="modal-subtitle">Déjanos tus datos y nuestro agente de IA te llamará al instante.</p>
+            <form id="callForm">
+                <div class="form-group"><label for="modal-name">Nombre</label><input type="text" id="modal-name"
+                        placeholder="Tu nombre" required></div>
+                <div class="form-group"><label for="modal-email">Email</label><input type="email" id="modal-email"
+                        placeholder="tu@email.com" required></div>
+                <div class="form-group"><label for="modal-phone">Teléfono</label><input type="tel" id="modal-phone"
+                        placeholder="+34 612 345 678" required></div>
+                <div class="cf-turnstile" data-sitekey="0x4AAAAAACdzIyoSlxr08Dfa" data-theme="auto"></div>
+                <button type="submit" class="btn btn-primary" id="callBtn">📞 Llámame</button>
+                <p id="callStatus" style="text-align:center;margin-top:12px;font-size:0.85rem;display:none;"></p>
+            </form>
+        </div>
+    </div>
+
     <script>
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const html = document.documentElement;
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', currentTheme);
+        themeToggle.addEventListener('click', () => {
+            const theme = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+        });
+
         document.getElementById('navToggle').addEventListener('click', () => { document.getElementById('navLinks').classList.toggle('open'); });
         window.addEventListener('scroll', () => { document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50); });
         const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        document.getElementById('callForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('callBtn');
+            const status = document.getElementById('callStatus');
+            const phone = document.getElementById('modal-phone').value.trim();
+            const turnstileResponse = e.target.querySelector('[name="cf-turnstile-response"]');
+            if (!turnstileResponse || !turnstileResponse.value) {
+                status.textContent = '⚠️ Por favor, completa la verificación de seguridad.';
+                status.style.color = '#f59e0b'; status.style.display = 'block'; return;
+            }
+            btn.disabled = true; btn.textContent = '⏳ Llamando...'; status.style.display = 'none';
+            try {
+                const res = await fetch('https://api.elevenlabs.io/v1/convai/twilio/outbound-call', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'xi-api-key': 'sk_eead976fdcdd54d9899d5285e0e41b44357793f3ef845608' },
+                    body: JSON.stringify({ agent_id: 'agent_9101kh71cejee92sarad32rsv2sk', agent_phone_number_id: 'phnum_0701kdj9ffkgegq9pbk7d2br1fd6', to_number: phone })
+                });
+                if (res.ok) {
+                    status.textContent = '✅ ¡Llamada iniciada! Recibirás la llamada en segundos.'; status.style.color = '#4ade80'; status.style.display = 'block'; btn.textContent = '✅ Llamada enviada';
+                    setTimeout(() => { document.getElementById('contactModal').classList.remove('open'); e.target.reset(); btn.disabled = false; btn.textContent = '📞 Llámame'; status.style.display = 'none'; }, 3000);
+                } else { throw new Error('Error ' + res.status); }
+            } catch (err) { status.textContent = '❌ Error al iniciar la llamada. Inténtalo de nuevo.'; status.style.color = '#f87171'; status.style.display = 'block'; btn.disabled = false; btn.textContent = '📞 Llámame'; }
+        });
     </script>
 </body>
 
