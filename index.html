@@ -577,16 +577,13 @@
             status.style.display = 'none';
 
             try {
-                const res = await fetch('https://api.elevenlabs.io/v1/convai/twilio/outbound-call', {
+                const res = await fetch('https://66ddwwgrhvx2bwlrzv266w2xl40smloe.lambda-url.eu-central-1.on.aws/', {
                     method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
-                        'xi-api-key': 'sk_eead976fdcdd54d9899d5285e0e41b44357793f3ef845608'
+                        'Content-Type': 'application/json'
                     },
                     body: JSON.stringify({
-                        agent_id: 'agent_9101kh71cejee92sarad32rsv2sk',
-                        agent_phone_number_id: 'phnum_0701kdj9ffkgegq9pbk7d2br1fd6',
-                        to_number: phone
+                        phone: phone
                     })
                 });
 
